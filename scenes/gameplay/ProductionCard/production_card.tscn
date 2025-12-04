@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdqi62md465w8"]
+
+[ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="1_f831c"]
+[ext_resource type="Script" uid="uid://dsvofbsor63yh" path="res://scenes/gameplay/ProductionCard/production_card.gd" id="1_krvm7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krvm7"]
+size = Vector2(144, 140)
+
+[node name="ProductionCard" type="Node2D"]
+script = ExtResource("1_krvm7")
+
+[node name="DropArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="DropShape" type="CollisionShape2D" parent="DropArea"]
+position = Vector2(62, 60)
+shape = SubResource("RectangleShape2D_krvm7")
+
+[node name="CardControl" type="Control" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="Panel" type="Panel" parent="CardControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardControl/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardControl/Panel/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardNameLabel" type="Label" parent="CardControl/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Producer"
+
+[node name="TextureRect" type="TextureRect" parent="CardControl/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_f831c")
+
+[node name="ProgressBar" type="ProgressBar" parent="CardControl/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 2
+value = 30.0
+fill_mode = 3
+
+[node name="Button" type="Button" parent="CardControl"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="area_entered" from="DropArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="DropArea" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="DropArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="DropArea" to="." method="_on_area_2d_body_exited"]
+[connection signal="button_down" from="CardControl/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CardControl/Button" to="." method="_on_button_button_up"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

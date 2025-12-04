@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://cylvo6t556qfl"]
+
+[ext_resource type="Script" uid="uid://btge0u1arxa38" path="res://scenes/gameplay/ResourceCard/resource_card.gd" id="1_2fptk"]
+[ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_5mu6t"]
+[ext_resource type="Resource" uid="uid://cg27omahxknfo" path="res://resources/gameplay/Resource/Ore.tres" id="2_jsw13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7lhd"]
+size = Vector2(166, 158)
+
+[node name="ResourceCard" type="Node2D"]
+script = ExtResource("1_2fptk")
+placeHolderResource = ExtResource("2_jsw13")
+
+[node name="CardControl" type="Control" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="Panel" type="Panel" parent="CardControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardControl/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardControl/Panel/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardNameLabel" type="Label" parent="CardControl/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resource"
+
+[node name="TextureRect" type="TextureRect" parent="CardControl/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_5mu6t")
+
+[node name="Button" type="Button" parent="CardControl"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardBody" type="CharacterBody2D" parent="."]
+
+[node name="CardBodyShape" type="CollisionShape2D" parent="CardBody"]
+position = Vector2(61, 59)
+shape = SubResource("RectangleShape2D_p7lhd")
+
+[connection signal="button_down" from="CardControl/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CardControl/Button" to="." method="_on_button_button_up"]

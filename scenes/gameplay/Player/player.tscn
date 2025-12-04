@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://br700vkqfftxi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q64rj"]
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_q64rj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CharacterControler" type="Node" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Walking" type="Node" parent="StateMachine"]

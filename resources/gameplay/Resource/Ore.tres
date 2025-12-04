@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cg27omahxknfo"]
+
+[ext_resource type="Script" uid="uid://cvu60utmn3yy0" path="res://resources/gameplay/Resource/item_resource.gd" id="1_634b2"]
+[ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_eoolm"]
+
+[resource]
+script = ExtResource("1_634b2")
+name = "Ore"
+description = "From the stone"
+texture = ExtResource("2_eoolm")
+metadata/_custom_type_script = "uid://cvu60utmn3yy0"
